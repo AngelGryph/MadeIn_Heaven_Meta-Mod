@@ -1,0 +1,26 @@
+// Made in heaven: Meta-Mod
+//
+// WeiDU installer
+
+BACKUP "weidu_external/backup/mih_metamod"
+
+AUTHOR "angel@pearlgates.net"
+VERSION "v1"
+
+//MODDER setup_tra none area_variables warn missing_extern warn missing_resref warn ict2_actions none missing_eval none overwriting_file none fun_args warn
+
+ASK_EVERY_COMPONENT
+NO_IF_EVAL_BUG
+AUTO_EVAL_STRINGS
+
+ALWAYS
+  INCLUDE "mih_metamod/lib/always.tpa"
+END	// ALWAYS block
+
+
+LANGUAGE "English"
+         "english"
+	 "mih_metamod/language/english/setup-mih_metamod.tra"
+	 "weidu_external/lang/mih_metamod/english/setup-mih_metamod.tra"
+
+
