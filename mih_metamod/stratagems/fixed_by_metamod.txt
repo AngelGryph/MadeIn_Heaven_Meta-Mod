@@ -1,0 +1,8 @@
+Bugs fixed by Made in Heaven: Meta-Mod
+- Restored contents of standard_mage.ssl file
+- Mind Blank no longer blocks contingencies and sequencers and
+  now blocks stun.
+- BG2EE compatibility fixes: Shuts up warnings and fixes minor issues
+  in components "Improved Fiends" and "Improved Dragons".
+
+

@@ -23,4 +23,61 @@ LANGUAGE "English"
 	 "mih_metamod/language/english/setup-mih_metamod.tra"
 	 "weidu_external/lang/mih_metamod/english/setup-mih_metamod.tra"
 
+BEGIN "Static fixes for Sword Coast Stratagems v33.7"
+GROUP "Static Fixes"
+NO_LOG_RECORD
+
+REQUIRE_FILE "stratagems/setup-stratagems.tp2" "You don't have this mod unpacked."
+FORBID_FILE "stratagems/fixed_by_metamod.txt" "This mod has already been fixed by Meta-Mod."
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "scs_static_fixes"
+  location	= "stratagems"
+END
+
+
+BEGIN "Static fixes for Tweaks Anthology v9"
+GROUP "Static Fixes"
+NO_LOG_RECORD
+
+REQUIRE_FILE "cdtweaks/setup-cdtweaks.tp2" "You don't have this mod unpacked."
+FORBID_FILE "cdtweaks/fixed_by_metamod.txt" "This mod has already been fixed by Meta-Mod."
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "tweaks_static_fixes"
+  location	= "cdtweaks"
+END
+
+
+BEGIN "Running fixes for Sword Coast Stratagems v33.7"
+GROUP "Running Fixes"
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "scs_running_fixes"
+  location	= "stratagems"
+END
+
+
+BEGIN "Running fixes for Tweaks Anthology"
+GROUP "Running Fixes"
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "tweaks_running_fixes"
+  location	= "cdtweaks"
+END
+
+
+BEGIN "Cleanup unneeded setup files"
+NO_LOG_RECORD
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "cleanup_files"
+  location	= "cleanup"
+END
+
 

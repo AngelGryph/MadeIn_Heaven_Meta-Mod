@@ -1,0 +1,50 @@
+DEFINE_ACTION_FUNCTION scs_running_fixes
+BEGIN
+  // Running fixes for Sword Coast Stratagems v33.7
+
+
+  // Fix Mind Blank blocking contingencies and sequencers and not blocking stun
+
+  ACTION_IF MOD_IS_INSTALLED "setup-stratagems.tp2" 1500
+  BEGIN
+    MAKE_PATCH
+      patch_effect_inline=>~match=>"opcode = 101 and parameter2 = 171" parameter2=>45~
+    END
+
+    LAUNCH_ACTION_FUNCTION edit_spell
+      STR_VAR
+      spell	= "WIZARD_MIND_BLANK"
+      edits	= "patch_data"
+    END
+  END
+
+
+  // BG2EE compatibility fixes
+
+  ACTION_IF MOD_IS_INSTALLED "setup-stratagems.tp2" 6510
+        AND FILE_EXISTS_IN_GAME "sppr730d.eff"
+  BEGIN
+    MAKE_PATCH
+      patch_effect_inline=>~match=>"opcode = 177" resource="balaura"~
+    END
+
+    LAUNCH_ACTION_FUNCTION edit_spell
+      STR_VAR
+      spell	= "sppr730"
+      edits	= "patch_data"
+    END
+
+
+    MAKE_PATCH
+      patch_effect_inline=>~match=>"opcode = 232" resource="balaura"~
+    END
+
+    LAUNCH_ACTION_FUNCTION clone_effect
+      STR_VAR
+      effect	= "sppr730=>balaura"
+      edits	= "patch_data"
+    END
+  END
+END	// scs_running_fixes
+
+

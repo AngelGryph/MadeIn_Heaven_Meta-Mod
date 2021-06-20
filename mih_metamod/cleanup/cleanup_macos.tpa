@@ -1,0 +1,9 @@
+DEFINE_ACTION_FUNCTION cleanup_macos
+BEGIN
+  ACTION_BASH_FOR "." "^setup-.*\.exe"
+  BEGIN
+    DELETE + "%BASH_FOR_FILE%"
+  END
+END	// cleanup_macos
+
+

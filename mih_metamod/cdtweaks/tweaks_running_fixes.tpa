@@ -1,0 +1,24 @@
+DEFINE_ACTION_FUNCTION tweaks_running_fixes
+BEGIN
+  // Running fixes for Tweaks Anthology
+
+
+  // Make "Lightning bolts don't bounce work" on EE 2.6
+
+  ACTION_IF MOD_IS_INSTALLED "setup-cdtweaks.tp2" 2530
+  BEGIN
+    MAKE_PATCH
+      explosion_pro=>207
+    END
+
+    LAUNCH_ACTION_FUNCTION edit_pro
+      INT_VAR
+      allow_missing	= 1
+      STR_VAR
+      pro	= "lightb idpro40"
+      edits	= "patch_data"
+    END
+  END
+END	// tweaks_running_fixes
+
+

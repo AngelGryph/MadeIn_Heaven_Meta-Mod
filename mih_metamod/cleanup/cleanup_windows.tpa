@@ -1,0 +1,13 @@
+DEFINE_ACTION_FUNCTION cleanup_windows
+BEGIN
+  ACTION_BASH_FOR "." "^setup-.*\.command"
+  BEGIN
+    DELETE + "%BASH_FOR_FILE%"
+     ACTION_IF FILE_EXISTS "%BASH_FOR_RES%"
+     BEGIN
+       DELETE + "%BASH_FOR_RES%"
+     END
+  END
+END	// cleanup_windows
+
+

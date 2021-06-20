@@ -1,0 +1,31 @@
+DEFINE_ACTION_FUNCTION cleanup_files
+BEGIN
+  ACTION_MATCH "%WEIDU_OS%"
+  WITH
+  "unix"
+  BEGIN
+    LAUNCH_ACTION_FUNCTION run
+      STR_VAR
+      file	= "cleanup_linux"
+    END
+  END
+  "osx"
+  BEGIN
+    LAUNCH_ACTION_FUNCTION run
+      STR_VAR
+      file	= "cleanup_mac"
+    END
+  END
+  "win32"
+  BEGIN
+    LAUNCH_ACTION_FUNCTION run
+      STR_VAR
+      file	= "cleanup_windows"
+    END
+  END
+  DEFAULT
+    FAIL ~Don't know how to cleanup on OS "%WEIDU_OS%"!~
+  END
+END	// cleanup_files
+
+
