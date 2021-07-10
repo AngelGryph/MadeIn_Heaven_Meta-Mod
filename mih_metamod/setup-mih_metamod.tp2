@@ -71,6 +71,16 @@ LAUNCH_ACTION_FUNCTION run
 END
 
 
+BEGIN "Running fixes for Finch NPC"
+GROUP "Running Fixes"
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "finch_running_fixes"
+  location	= "finchnpc"
+END
+
+
 BEGIN "Cleanup unneeded setup files"
 NO_LOG_RECORD
 

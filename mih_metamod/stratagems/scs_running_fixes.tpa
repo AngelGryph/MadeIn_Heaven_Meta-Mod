@@ -2,11 +2,13 @@ DEFINE_ACTION_FUNCTION scs_running_fixes
 BEGIN
   // Running fixes for Sword Coast Stratagems v33.7
 
-
-  // Fix Mind Blank blocking contingencies and sequencers and not blocking stun
+  
+  // IWD arcane spell fixes
 
   ACTION_IF MOD_IS_INSTALLED "setup-stratagems.tp2" 1500
   BEGIN
+    // Fix Mind Blank blocking contingencies and sequencers
+    // and not blocking stun
     MAKE_PATCH
       patch_effect_inline=>~match=>"opcode = 101 and parameter2 = 171" parameter2=>45~
     END
@@ -15,6 +17,29 @@ BEGIN
       STR_VAR
       spell	= "WIZARD_MIND_BLANK"
       edits	= "patch_data"
+    END
+  END
+
+  
+  // IWD divine spell fixes
+
+  ACTION_IF MOD_IS_INSTALLED "setup-stratagems.tp2" 1510
+  BEGIN
+    // changes in spell system if AI component is installed
+
+    ACTION_IF MOD_IS_INSTALLED "setup-stratagems.tp2" 9500
+    BEGIN
+      // Thorn Spray corrected damage 4d12 save for half (EE)
+
+      MAKE_PATCH
+        patch_effect_inline=>~match=>"opcode = 12" dicesize=>12 mode=>"mode | BIT8"~
+      END
+
+      LAUNCH_ACTION_FUNCTION edit_spell
+        STR_VAR
+        spell	= "CLERIC_THORN_SPRAY"
+        edits	= "patch_data"
+      END
     END
   END
 
