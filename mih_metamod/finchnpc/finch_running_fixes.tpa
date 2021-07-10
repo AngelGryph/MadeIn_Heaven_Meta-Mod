@@ -1,0 +1,14 @@
+DEFINE_ACTION_FUNCTION finch_running_fixes
+BEGIN
+  // Running fixes for FinchNPC
+
+
+  // Make Finch's glasses work in EE games
+  
+  ACTION_IF FILE_EXISTS_IN_GAME "itemspec.2da"
+  BEGIN
+    APPEND "itemspec.2da" "SUMISC3P 1" UNLESS "SUMISC3P"
+  END
+END	// finch_running_fixes
+
+
