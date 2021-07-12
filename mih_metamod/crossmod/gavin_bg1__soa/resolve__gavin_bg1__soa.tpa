@@ -1,0 +1,34 @@
+DEFINE_ACTION_FUNCTION resolve__gavin_bg1__soa
+BEGIN
+  // Both Gavin BG1 and Stone of Askavar use House 22 in Beregost
+  //
+  // This moves the Stone of Askavar content to the nearly identical
+  // House 10, this is also near the Jovial Juggler.
+
+  LAUNCH_ACTION_FUNCTION edit_area
+    STR_VAR
+    area	= "%Beregost_House10_L1%"
+    editstring	= ~delete_actor=>null~
+  END
+
+  LAUNCH_ACTION_FUNCTION extend_area_script
+    STR_VAR
+    area	= "%Beregost_House10_L1%"
+    bottom	= "ar3337"
+    locabs	= "soa/snips"
+  END
+
+  LAUNCH_ACTION_FUNCTION DELETE_SCRIPT_BLOCK
+    STR_VAR
+    script	= "%Beregost_House22_L1%"
+    match	= "LizzySpawn"
+  END
+
+  LAUNCH_ACTION_FUNCTION DELETE_SCRIPT_BLOCK
+    STR_VAR
+    script	= "%Beregost_House22_L1%"
+    match	= "RebSpawn"
+  END
+END	// resolve__gavin_bg1__soa
+
+

@@ -23,6 +23,11 @@ LANGUAGE "English"
 	 "mih_metamod/language/english/setup-mih_metamod.tra"
 	 "weidu_external/lang/mih_metamod/english/setup-mih_metamod.tra"
 
+
+//////////////////
+// Static Fixes
+//////////////////
+
 BEGIN "Static fixes for Sword Coast Stratagems v33.7"
 GROUP "Static Fixes"
 NO_LOG_RECORD
@@ -33,7 +38,7 @@ FORBID_FILE "stratagems/fixed_by_metamod.txt" "This mod has already been fixed b
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "scs_static_fixes"
-  location	= "stratagems"
+  location	= "fixes/stratagems"
 END
 
 
@@ -47,9 +52,43 @@ FORBID_FILE "cdtweaks/fixed_by_metamod.txt" "This mod has already been fixed by 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "tweaks_static_fixes"
-  location	= "cdtweaks"
+  location	= "fixes/cdtweaks"
 END
 
+
+//////////////////
+// Running fixes
+//////////////////
+
+// Finch NPC
+
+BEGIN "Running fixes for Finch NPC"
+GROUP "Running Fixes"
+
+REQUIRE_COMPONENT "FinchNPC.TP2" 0 ~You do not have this mod installed.~
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "finch_running_fixes"
+  location	= "fixes/finchnpc"
+END
+
+
+BEGIN "Running fixes for Stone of Askavar"
+GROUP "Running Fixes"
+
+REQUIRE_PREDICATE MOD_IS_INSTALLED "setup-soa.tp2" 0
+               OR MOD_IS_INSTALLED "setup-soa.tp2" 1
+  ~You do not have this mod installed.~
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "soa_running_fixes"
+  location	= "fixes/askavar"
+END
+
+
+// Sword Coast Stratagems
 
 BEGIN "Running fixes for Sword Coast Stratagems v33.7"
 GROUP "Running Fixes"
@@ -57,9 +96,11 @@ GROUP "Running Fixes"
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "scs_running_fixes"
-  location	= "stratagems"
+  location	= "fixes/stratagems"
 END
 
+
+// Tweaks Anthology
 
 BEGIN "Running fixes for Tweaks Anthology"
 GROUP "Running Fixes"
@@ -67,19 +108,34 @@ GROUP "Running Fixes"
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "tweaks_running_fixes"
-  location	= "cdtweaks"
+  location	= "fixes/cdtweaks"
 END
 
 
-BEGIN "Running fixes for Finch NPC"
-GROUP "Running Fixes"
+///////////////////////
+// Crossmod conflicts
+///////////////////////
+
+// Gavin BG1 vs. Stone of Askavar
+
+BEGIN "Resolve Gavin (BG1) vs. Stone of Askavar mod conflict"
+GROUP "Conflict Resolutions"
+
+REQUIRE_PREDICATE (MOD_IS_INSTALLED "setup-soa.tp2" 0
+               OR MOD_IS_INSTALLED "setup-soa.tp2" 1)
+	      AND MOD_IS_INSTALLED "gavin.tp2" 0
+  ~Your installation does not have this conflict.~
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
-  file		= "finch_running_fixes"
-  location	= "finchnpc"
+  file		= "resolve__gavin_bg1__soa"
+  location	= "crossmod/gavin_bg1__soa"
 END
 
+
+//////////////////
+// Odds and ends
+//////////////////
 
 BEGIN "Cleanup unneeded setup files"
 NO_LOG_RECORD
