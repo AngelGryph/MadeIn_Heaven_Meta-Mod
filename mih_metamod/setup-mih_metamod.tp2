@@ -60,6 +60,20 @@ END
 // Running fixes
 //////////////////
 
+// EE 2.6
+
+BEGIN "Running fixes for BGEE 2.6"
+GROUP "Running Fixes"
+
+REQUIRE_PREDICATE GAME_INCLUDES "bgee" ~This is not applicable to your game.~
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "fix_bgee_26"
+  location	= "fixes/ee_26"
+END
+
+
 // Finch NPC
 
 BEGIN "Running fixes for Finch NPC"
