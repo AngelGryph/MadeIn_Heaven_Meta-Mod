@@ -7,6 +7,15 @@ BEGIN
     file	= "tremain.baf"
     location	= "scripts"
   END
+
+
+  // Fix endless recurring animation from Yeslick's innate Dispel Magic
+
+  LAUNCH_ACTION_FUNCTION edit_spell
+    STR_VAR
+    spell	= "spin112"
+    editstring	= ~delete_effect=>"opcode = 215 and timing = 1"~
+  END
 END	// fix_bgee_26
 
 
