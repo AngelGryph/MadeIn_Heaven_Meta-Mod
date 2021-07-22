@@ -15,8 +15,8 @@ BEGIN
 
     LAUNCH_ACTION_FUNCTION edit_spell
       STR_VAR
-      spell	= "WIZARD_MIND_BLANK"
-      edits	= "patch_data"
+      spell		= "WIZARD_MIND_BLANK"
+      edits		= "patch_data"
     END
   END
 
@@ -37,8 +37,8 @@ BEGIN
 
       LAUNCH_ACTION_FUNCTION edit_spell
         STR_VAR
-        spell	= "CLERIC_THORN_SPRAY"
-        edits	= "patch_data"
+        spell		= "CLERIC_THORN_SPRAY"
+        edits		= "patch_data"
       END
     END
   END
@@ -55,8 +55,8 @@ BEGIN
 
     LAUNCH_ACTION_FUNCTION edit_spell
       STR_VAR
-      spell	= "sppr730"
-      edits	= "patch_data"
+      spell		= "sppr730"
+      edits		= "patch_data"
     END
 
 
@@ -66,8 +66,26 @@ BEGIN
 
     LAUNCH_ACTION_FUNCTION clone_effect
       STR_VAR
-      effect	= "sppr730=>balaura"
-      edits	= "patch_data"
+      effect		= "sppr730=>balaura"
+      edits		= "patch_data"
+    END
+  END
+
+
+  // Unkillable Aec'Letec fix
+
+  ACTION_IF is_bg1
+  BEGIN
+    LAUNCH_ACTION_FUNCTION install
+      STR_VAR
+      file		= "aecletec.baf"
+      location		= "scripts"
+    END
+
+    LAUNCH_ACTION_FUNCTION edit_creature
+      STR_VAR
+      creature		= "tanar tanar2"
+      editstring	= "insert_script_high=>aecletec"
     END
   END
 END	// scs_running_fixes
