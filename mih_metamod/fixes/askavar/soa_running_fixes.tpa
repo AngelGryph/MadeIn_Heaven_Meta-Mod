@@ -1,5 +1,41 @@
 DEFINE_ACTION_FUNCTION soa_running_fixes
 BEGIN
+  // soaitm15 - Mydan's Frost +2
+  //
+  // Bonus to damage is one too low (base 1d4+1, +2 should be 1d4+3)
+  // Equipped protection from cold effect is dispelable.
+
+  LAUNCH_ACTION_FUNCTION edit_item
+    STR_VAR
+    item	= "soaitm15"
+    editstring	= ~patch_ability_inline=>"damage_bonus=>3" patch_effect_global_inline=>"resist_dispel=>0"~
+  END
+
+
+  // soaitm16 - Cormyrian Helm
+  //
+  // Item does not protect against fear as description says.
+  // Item does not properly prevent confusion animation and icons.
+
+  LAUNCH_ACTION_FUNCTION edit_item
+    STR_VAR
+    item	= "soaitm16"
+    editstring	= ~add_effect_global_inline=>"opcode=>101 target=>1 timing=>2 parameter2=>24" cd_immunity=>"confusion fear"~
+  END
+
+
+  // soaitm31 - The Star of Eloen
+  //
+  // Free Action effect has wrong timing mode.
+  // Item lacks full freedom of movement effect.
+
+  LAUNCH_ACTION_FUNCTION edit_item
+    STR_VAR
+    item	= "soaitm31"
+    editstring	= ~patch_effect_global_inline=>"timing=>2" cd_immunity=>"entangle hold slow stun web free_action"~
+  END
+
+
   // soaitm32 - The Star of Merris
   //
   // Item lacks full poison/disease immunity.
@@ -42,21 +78,27 @@ BEGIN
   END
 
 
-  // Stone Golems
+  // Stone Golem
+  //
+  // Creature has no combat script, as WTASIGHT is set in the dialog field.
+  // Also, it's worth 1,000 xp too much, stone golems should be 8,000 xp.
 
-  MAKE_PATCH
-    xp_value=>8000
-    race=>golem
-    class=>golem_stone
-    alignment=>neutral
-    script_default=>wtasight
-    dialog=>none
-  END
 
   LAUNCH_ACTION_FUNCTION edit_creature
     STR_VAR
     creature	= "stonegol"
-    edits	= "patch_data"
+    editstring	= ~xp_value=>8000 race=>golem class=>golem_stone alignment=>neutral script_default=>wtasight dialog=>none~
+  END
+
+
+  // Bluebell forest
+  //
+  // Web traps cannot be detected or removed.
+
+  LAUNCH_ACTION_FUNCTION edit_area
+    STR_VAR
+    area	= "ars002"
+    editstring	= %patch_trigger_inline=>~match=>"trigger_type = 0" trap_detectable=>1 trap_detection_difficulty=>50 trap_removal_difficulty=>40~%
   END
 END	// soa_running_fixes
 
