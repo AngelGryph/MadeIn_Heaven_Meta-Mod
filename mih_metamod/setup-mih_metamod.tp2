@@ -28,22 +28,6 @@ LANGUAGE "English"
 // Static Fixes
 //////////////////
 
-BEGIN "Static fixes for Sword Coast Stratagems v33.7"
-GROUP "Static Fixes"
-NO_LOG_RECORD
-
-DEPRECATED "Not ready yet."
-
-REQUIRE_FILE "stratagems/setup-stratagems.tp2" "You don't have this mod unpacked."
-FORBID_FILE "stratagems/fixed_by_metamod.txt" "This mod has already been fixed by Meta-Mod."
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "scs_static_fixes"
-  location	= "fixes/stratagems"
-END
-
-
 BEGIN "Static fixes for Tweaks Anthology v9"
 GROUP "Static Fixes"
 NO_LOG_RECORD
@@ -64,20 +48,6 @@ END
 // Running fixes
 //////////////////
 
-// EE 2.6
-
-BEGIN "Running fixes for BGEE 2.6"
-GROUP "Running Fixes"
-
-REQUIRE_PREDICATE ENGINE_IS "bgee bg2ee" ~This is not applicable to your game.~
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "fix_bgee_26"
-  location	= "fixes/ee_26"
-END
-
-
 // Aerie in BG1
 
 BEGIN "Running fixes for Aerie in BG1"
@@ -89,20 +59,6 @@ LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "aerie_running_fixes"
   location	= "fixes/aerie_bg1"
-END
-
-
-// Finch NPC
-
-BEGIN "Running fixes for Finch NPC"
-GROUP "Running Fixes"
-
-REQUIRE_COMPONENT "FinchNPC.TP2" 0 ~You do not have this mod installed.~
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "finch_running_fixes"
-  location	= "fixes/finchnpc"
 END
 
 
@@ -119,18 +75,6 @@ LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "soa_running_fixes"
   location	= "fixes/askavar"
-END
-
-
-// Sword Coast Stratagems
-
-BEGIN "Running fixes for Sword Coast Stratagems v33.7"
-GROUP "Running Fixes"
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "scs_running_fixes"
-  location	= "fixes/stratagems"
 END
 
 
