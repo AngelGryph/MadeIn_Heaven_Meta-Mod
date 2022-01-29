@@ -1,4 +1,0 @@
-Bugs fixed by Made in Heaven: Meta-Mod
-- "Lightning bolts don't bounce" now works with BG(2)EE v2.6
-
-

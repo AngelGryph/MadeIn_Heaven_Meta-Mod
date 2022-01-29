@@ -25,26 +25,6 @@ LANGUAGE "English"
 
 
 //////////////////
-// Static Fixes
-//////////////////
-
-BEGIN "Static fixes for Tweaks Anthology v9"
-GROUP "Static Fixes"
-NO_LOG_RECORD
-
-DEPRECATED "Not ready yet."
-
-REQUIRE_FILE "cdtweaks/setup-cdtweaks.tp2" "You don't have this mod unpacked."
-FORBID_FILE "cdtweaks/fixed_by_metamod.txt" "This mod has already been fixed by Meta-Mod."
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "tweaks_static_fixes"
-  location	= "fixes/cdtweaks"
-END
-
-
-//////////////////
 // Running fixes
 //////////////////
 
@@ -75,18 +55,6 @@ LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "soa_running_fixes"
   location	= "fixes/askavar"
-END
-
-
-// Tweaks Anthology
-
-BEGIN "Running fixes for Tweaks Anthology"
-GROUP "Running Fixes"
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "tweaks_running_fixes"
-  location	= "fixes/cdtweaks"
 END
 
 
