@@ -1,0 +1,16 @@
+DEFINE_ACTION_FUNCTION d0quest_running_fixes
+BEGIN
+  // Reynald can't actually hurt the vampires he fights
+  // and easily falls victim to their dominating gazes.
+
+  ACTION_IF FILE_EXISTS_IN_GAME "d0kaypal.cre"
+  BEGIN
+    LAUNCH_ACTION_FUNCTION edit_creature
+      STR_VAR
+      creature		= "d0kaypal"
+      editstring	= ~replace_items=>"helm06(helmet) sw2h20(weapon1)"~
+    END
+  END
+END	// d0quest_running_fixes
+
+
