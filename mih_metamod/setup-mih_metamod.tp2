@@ -33,7 +33,7 @@ LANGUAGE "English"
 BEGIN "Running fixes for Aerie in BG1"
 GROUP "Running Fixes"
 
-REQUIRE_COMPONENT "setup-BG1Aerie.tp2" 0 ~You do not have this mod installed.~
+REQUIRE_COMPONENT "setup-BG1Aerie.tp2" 0 ~Your current setup does not need this fix.~
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
@@ -49,12 +49,43 @@ GROUP "Running Fixes"
 
 REQUIRE_PREDICATE MOD_IS_INSTALLED "setup-soa.tp2" 0
                OR MOD_IS_INSTALLED "setup-soa.tp2" 1
-  ~You do not have this mod installed.~
+  ~Your current setup does not need this fix.~
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "soa_running_fixes"
   location	= "fixes/askavar"
+END
+
+
+// Quest Pack
+
+BEGIN "Running fixes for Quest Pack"
+GROUP "Running Fixes"
+
+REQUIRE_PREDICATE MOD_IS_INSTALLED "setup-d0questpack.tp2" 7
+  ~Your current setup does not need this fix.~
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "d0quest_running_fixes"
+  location	= "fixes/d0quest"
+END
+
+
+// Quest Pack
+
+BEGIN "Running fixes for Saradas Magic 2"
+GROUP "Running Fixes"
+
+REQUIRE_PREDICATE MOD_IS_INSTALLED "saradas_magic_2.tp2" 0
+               OR MOD_IS_INSTALLED "saradas_magic_2.tp2" 1
+  ~Your current setup does not need this fix.~
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "saradas_running_fixes_bg2"
+  location	= "fixes/saradas_magic"
 END
 
 
@@ -70,7 +101,7 @@ GROUP "Conflict Resolutions"
 REQUIRE_PREDICATE (MOD_IS_INSTALLED "setup-soa.tp2" 0
                OR MOD_IS_INSTALLED "setup-soa.tp2" 1)
 	      AND MOD_IS_INSTALLED "gavin.tp2" 0
-  ~Your installation does not have this conflict.~
+  ~Your current setup does not need this fix.~
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR

@@ -1,0 +1,19 @@
+DEFINE_ACTION_FUNCTION saradas_running_fixes_bg2
+BEGIN
+  // ToB Saradas proficiencies fix
+  //
+  // ToB Saradas has poroficiencies in dagger and dart, which are prohibited
+  // to cleric/mages.  Change to club and sling instead.  Change the club
+  // proficiency from cleric level to mace to avoid duplicates.
+
+  ACTION_IF FILE_EXISTS_IN_GAME "!sartob.cre"
+  BEGIN
+    LAUNCH_ACTION_FUNCTION edit_creature
+      STR_VAR
+      creature		= "!sartob"
+      editstring	= %patch_effect_inline=>~match=>"opcode = 233" parameter2=>"parameter2 in [96->115 106->107 115->101 default->no_change]"~%	// %-signs are string delimiters here!
+    END
+  END
+END	// saradas_magic_running_fixes
+
+
