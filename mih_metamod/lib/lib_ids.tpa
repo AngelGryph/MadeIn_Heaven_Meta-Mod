@@ -1,0 +1,42 @@
+COPY - "%MOD_FOLDER%/lib/ids_entries.2da" "override"
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+
+  READ_2DA_ENTRIES_NOW __ids_entries cols
+
+  FOR (SET i = 0; i < rows; ++i)
+  BEGIN
+    READ_2DA_ENTRY_FORMER __ids_entries i 0 ids_file
+    READ_2DA_ENTRY_FORMER __ids_entries i 1 symbol
+    READ_2DA_ENTRY_FORMER __ids_entries i 2 value
+
+    PATCH_IF FILE_EXISTS_IN_GAME "%ids_file%.ids"
+          AND IDS_OF_SYMBOL("%ids_file%" "%symbol%") == "-1"
+    BEGIN
+      INNER_ACTION
+      BEGIN
+        APPEND "%ids_file%.ids" "%value% %symbol%"
+      END
+    END
+  END
+
+
+  // Add dir.ids to game versions lacking it.
+
+  ACTION_IF NOT FILE_EXISTS_IN_GAME "dir.ids"
+  BEGIN
+    COPY "%MOD_FOLDER%/lib/resource/dir.ids" "override"
+  END
+
+  // Some mods (Ascension) add dir.ids but no not make the required edits
+  // to action.ids, so we do those outside the conditional block.
+
+  COPY_EXISTING "action.ids" "override"
+    REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+      "I:Direction*)" "I:Direction*DIR)"
+    REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+      "I:Face*)" "I:Face*DIR)"
+    BUT_ONLY_IF_IT_CHANGES
+CLEAR_IDS_MAP
+
+
