@@ -1,4 +1,4 @@
-DEFINE_ACTION_FUNCTION cleanup_windows
+DEFINE_ACTION_FUNCTION remove_mac_files
 BEGIN
   ACTION_BASH_FOR "." "^setup-.*\.command"
   BEGIN
@@ -8,6 +8,6 @@ BEGIN
        DELETE + "%BASH_FOR_RES%"
      END
   END
-END	// cleanup_windows
+END	// remove_mac_files
 
 

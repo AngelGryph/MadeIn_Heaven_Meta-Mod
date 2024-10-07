@@ -1,0 +1,16 @@
+DEFINE_ACTION_FUNCTION d0questpack
+BEGIN
+  // Extended Reynald Sequence - Chapter 6 Reynald carries normal weapons and cannot actually hurt any vampires.
+
+  ACTION_IF FILE_EXISTS_IN_GAME "d0kaypal.cre"
+  BEGIN
+    PRINT "D0Questpack - Extended Reynald Sequence detected, installing Reynald equipment fix..."
+
+    cre.edit[d0kaypal]
+    [
+      m.cre_add_items{helm06(helmet) sw2h20(weapon1)|replace:i=1}
+    ]
+  END
+END	// d0questpack
+
+

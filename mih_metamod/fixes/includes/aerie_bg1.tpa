@@ -1,0 +1,13 @@
+DEFINE_ACTION_FUNCTION aerie_bg1
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "b2#rng1.itm"
+  BEGIN
+    PRINT "Aerie for BG1 detected, installing item exclude fix..."
+
+    // Aerie's Ring of Protection is not in itemexcl.2da
+
+    APPEND "itemexcl.2da" "b2#rng1   1" UNLESS "b2#rng1"
+  END
+END	// aerie_bg1
+
+

@@ -23,98 +23,31 @@ LANGUAGE "English"
 	 "mih_metamod/language/english/setup-mih_metamod.tra"
 	 "weidu_external/lang/mih_metamod/english/setup-mih_metamod.tra"
 
+// Patch known bugs in installed mods
 
-//////////////////
-// Running fixes
-//////////////////
-
-// Aerie in BG1
-
-BEGIN "Running fixes for Aerie in BG1"
-GROUP "Running Fixes"
-
-REQUIRE_COMPONENT "setup-BG1Aerie.tp2" 0 ~Your current setup does not need this fix.~
+BEGIN @1
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
-  file		= "aerie_running_fixes"
-  location	= "fixes/aerie_bg1"
+  file		= "install_bug_fixes"
+  location	= "fixes"
 END
 
 
-// Stone of Askavar
+// Resolve known mod conflicts
 
-BEGIN "Running fixes for Stone of Askavar"
-GROUP "Running Fixes"
-
-REQUIRE_PREDICATE MOD_IS_INSTALLED "setup-soa.tp2" 0
-               OR MOD_IS_INSTALLED "setup-soa.tp2" 1
-  ~Your current setup does not need this fix.~
+BEGIN @2
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
-  file		= "soa_running_fixes"
-  location	= "fixes/askavar"
+  file		= "resolve_mod_conflicts"
+  location	= "crossmod"
 END
 
 
-// Quest Pack
+// Remove file clutter left by mods
 
-BEGIN "Running fixes for Quest Pack"
-GROUP "Running Fixes"
-
-REQUIRE_PREDICATE MOD_IS_INSTALLED "setup-d0questpack.tp2" 7
-  ~Your current setup does not need this fix.~
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "d0quest_running_fixes"
-  location	= "fixes/d0quest"
-END
-
-
-// Quest Pack
-
-BEGIN "Running fixes for Saradas Magic 2"
-GROUP "Running Fixes"
-
-REQUIRE_PREDICATE MOD_IS_INSTALLED "saradas_magic_2.tp2" 0
-               OR MOD_IS_INSTALLED "saradas_magic_2.tp2" 1
-  ~Your current setup does not need this fix.~
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "saradas_running_fixes_bg2"
-  location	= "fixes/saradas_magic"
-END
-
-
-///////////////////////
-// Crossmod conflicts
-///////////////////////
-
-// Gavin BG1 vs. Stone of Askavar
-
-BEGIN "Resolve Gavin (BG1) vs. Stone of Askavar mod conflict"
-GROUP "Conflict Resolutions"
-
-REQUIRE_PREDICATE (MOD_IS_INSTALLED "setup-soa.tp2" 0
-               OR MOD_IS_INSTALLED "setup-soa.tp2" 1)
-	      AND MOD_IS_INSTALLED "gavin.tp2" 0
-  ~Your current setup does not need this fix.~
-
-LAUNCH_ACTION_FUNCTION run
-  STR_VAR
-  file		= "resolve__gavin_bg1__soa"
-  location	= "crossmod/gavin_bg1__soa"
-END
-
-
-//////////////////
-// Odds and ends
-//////////////////
-
-BEGIN "Cleanup unneeded setup files"
+BEGIN @3
 NO_LOG_RECORD
 
 LAUNCH_ACTION_FUNCTION run

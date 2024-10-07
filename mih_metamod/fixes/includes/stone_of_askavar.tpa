@@ -1,0 +1,103 @@
+DEFINE_ACTION_FUNCTION stone_of_askavar
+BEGIN
+  // Stone of Askavar has tons of faulty items, bug fixes galore.
+
+  ACTION_IF FILE_EXISTS_IN_GAME "r8itm15.itm"
+  BEGIN
+    PRINT ~Stone of Askavar detected, installing item fixes gallore...~
+
+    // r8itm15 - Mydan's Frost +2
+    //
+    // Bonus to damage is one too low (base 1d4+1, +2 should be 1d4+3)
+    // Equipped protection from cold effect is dispelable.
+
+    itm.edit[r8itm15]
+    [
+      m.ab.alter{s_damage_bonus = 3}
+      m.fx.alter{s_dispel_resist := "NoDispelIgnoreResist"}
+    ]
+
+
+    // r8itm16 - Cormyrian Helm
+    //
+    // Item does not protect against fear as description says.
+    // TODO: Apply confusion and fear immunity batches.
+
+    itm.edit[r8itm16]
+    [
+      m.fx.add{s_opcode = 101;;s_target := "Self";;s_timing := "Equipped" s_parameter2 = 24}
+    ]
+
+
+    // r8itm31 - The Star of Eloen
+    //
+    // Free Action effect has wrong timing mode.
+    // TODO: Apply entangle, hold, slow, stun, web, and free_action immunity batches.
+
+    itm.edit[r8itm31]
+    [
+      m.fx.alter{s_timing := "Equipped"}
+    ]
+
+
+    // r8itm32 - The Star of Merris
+    //
+    // TODO: Apply poison, disease and poison_resistance immunity batches.
+
+
+    // r8itm13 - Sirine's Pearl
+    // r8itm21 - Mirror of Illusions
+    // r8itm22 - Orb of Storms
+    //
+    // All these item allegedly run on charges but actually have unlimited uses.
+
+    itm.edit[r8itm13 r8itm21 r8itm22]
+    [
+      m.ab.alter{s_number_charges = 12;;s_when_drained := "Vanishes"}
+    ]
+
+    are.edit[ars003]
+    [
+      m.item.alter{s_charges_1 = 12|match=~s_resref == "r8itm13"~}
+    ]
+
+    COPY_EXISTING "cearwin.dlg" "override"
+      DECOMPILE_AND_PATCH
+      BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH
+          ~CreateItem("r8itm21",0,0,0)~
+	  ~CreateItem("r8itm21", 12, 0, 0)~
+      END
+
+    cre.edit[r8cre11]
+    [
+      m.item.alter{s_charges_1 = 12|match=~s_resref == "r8itm22"~}
+    ]
+
+
+    // Stone Golem
+    //
+    // Cretaure is not raced or classed as a golem, has an illegal
+    // alignment value and isn't worth enough XP for its difficultty.
+
+    cre.edit[r8cre15]
+    [
+      m_xp_value = 8000
+      m_race := "golem"
+      m_class := "golem_stone"
+      m_alignment := "neutral"
+    ]
+
+
+    // Bluebell forest
+    //
+    // Web traps cannot be detected or removed.
+
+    are.edit[ars002]
+    [
+      m.region.alter{s_detectable = 1;;s_detection_difficulty = 50;;s_removal_difficulty = 40|match=~s_type == "trap"~}
+    ]
+  END
+END	// stone_of_askavar
+
+

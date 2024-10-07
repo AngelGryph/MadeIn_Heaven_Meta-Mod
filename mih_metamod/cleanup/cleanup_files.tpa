@@ -6,21 +6,21 @@ BEGIN
   BEGIN
     LAUNCH_ACTION_FUNCTION run
       STR_VAR
-      file	= "cleanup_linux"
+      file	= "remove_windows_files remove_mac_files"
     END
   END
   "osx"
   BEGIN
     LAUNCH_ACTION_FUNCTION run
       STR_VAR
-      file	= "cleanup_mac"
+      file	= "remove_windows_files"
     END
   END
   "win32"
   BEGIN
     LAUNCH_ACTION_FUNCTION run
       STR_VAR
-      file	= "cleanup_windows"
+      file	= "remove_mac_files"
     END
   END
   DEFAULT

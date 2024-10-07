@@ -1,8 +1,0 @@
-DEFINE_ACTION_FUNCTION aerie_running_fixes
-BEGIN
-  // Aerie's Ring of Protection is not in itemexcl.2da
-
-  APPEND "itemexcl.2da" "b2#rng1   1" UNLESS "b2#rng1"
-END
-
-
