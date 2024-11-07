@@ -1,0 +1,35 @@
+DEFINE_ACTION_FUNCTION moved_npcs_issues
+BEGIN
+  // Unfortunately, SFOv2 does not handle .gam files at this time.
+
+  COPY_EXISTING "baldur.gam" "override"
+    GET_OFFSET_ARRAY npc_array 0x0030 4 0x0034 4 0 0 0x160
+    PHP_EACH npc_array AS npc_index => npc_offset
+    BEGIN
+      READ_ASCII (npc_offset + 0x0c) npc_name
+      READ_ASCII (npc_offset + 0x18) npc_area
+
+      PATCH_MATCH "%npc_name%"
+      WITH
+      "%tutu_var%ELDOTH" WHEN is_bg1
+      BEGIN
+        // Eldoth moved to Coast Way may be in the way of
+	// a cutscene of Serpents of Abbathor.
+
+        PATCH_IF FILE_EXISTS_IN_GAME "acq10104.cre"
+	     AND "%npc_area%" STRING_EQUAL_CASE "%CoastWay%"
+	BEGIN
+	  PATCH_PRINT ~Eldoth moved to Coast Way and Serpents of Abbathor detected.  Moving Eldoth out of the way of Bashrik and Mirjala cutscene.~
+
+	  WRITE_SHORT (npc_offset + 0x20) 2315
+	  WRITE_SHORT (npc_offset + 0x22) 2195
+	END
+      END
+      DEFAULT
+      END	// MATCH
+    END
+
+  BUT_ONLY_IF_IT_CHANGES
+END	// moved_npc_issues
+
+
