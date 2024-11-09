@@ -1,0 +1,20 @@
+DEFINE_ACTION_FUNCTION the_calling
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "cd51rew.itm"
+  BEGIN
+    PRINT "The Calling fighter quest detected, installing Cloak of the Regent-Warrior nerf..."
+
+    // Cloak of the Regent-Warrior is a Cloak of Protection +2
+    // available as soon as chapter 2, several chapters before the
+    // actual Cloak of Protection +2 can be obtained.  Tone it down
+    // a notch.
+
+    itm.edit[cd51rew|edit_strrefs_in_place:i=1]
+    [
+      m.fx.alter{s_parameter1 = 1|match="s_opcode = 0 OR (s_opcode > 32 AND s_opcode < 38)"}
+      m_identified_description = m_identified_description.patch{REPLACE_TEXTUALLY EXACT_MATCH "+2" "+1"}
+    ]
+  END
+END	// the_calling
+
+

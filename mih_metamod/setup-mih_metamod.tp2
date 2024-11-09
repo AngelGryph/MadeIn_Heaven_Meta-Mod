@@ -45,9 +45,20 @@ LAUNCH_ACTION_FUNCTION run
 END
 
 
-// Remove file clutter left by mods
+// Install mod balance tweaks
 
 BEGIN @3
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "install_mod_balance_tweaks"
+  location	= "balance"
+END
+
+
+// Remove file clutter left by mods
+
+BEGIN @4
 NO_LOG_RECORD
 
 LAUNCH_ACTION_FUNCTION run

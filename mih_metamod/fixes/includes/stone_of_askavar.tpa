@@ -77,7 +77,7 @@ BEGIN
 
     // Stone Golem
     //
-    // Cretaure is not raced or classed as a golem, has an illegal
+    // Creature is not raced or classed as a golem, has an illegal
     // alignment value and isn't worth enough XP for its difficultty.
 
     cre.edit[r8cre15]
