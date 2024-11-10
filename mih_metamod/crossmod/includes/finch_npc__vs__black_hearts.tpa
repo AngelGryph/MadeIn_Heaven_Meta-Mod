@@ -1,0 +1,14 @@
+DEFINE_ACTION_FUNCTION finch_npc__vs__black_hearts
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "sufinchj.dlg"
+        AND FILE_EXISTS_IN_GAME "wipresfi.dlg"
+  BEGIN
+    PRINT ~Finch NPC and Black Hearts BG1 found.  Installing Finch xmod...~
+
+    LAUNCH_ACTION_FUNCTION install
+      STR_VAR
+      file	= "xmodfinchblackhearts.d"
+      location	= "dialogs"
+    END
+  END
+END	// finch_npc__vs__blackhearts

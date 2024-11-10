@@ -1,0 +1,14 @@
+DEFINE_ACTION_FUNCTION finch_npc
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME sufglass.itm
+  BEGIN
+    PRINT "Finch NPC detected, installing glasses targeting fix..."
+
+    itm.edit[sufglass]
+    [
+      m.ab.alter{s_target := "Caster"}
+    ]
+  END
+END	// finch_npc
+
+

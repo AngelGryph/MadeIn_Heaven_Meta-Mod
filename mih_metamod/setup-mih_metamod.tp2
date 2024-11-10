@@ -52,7 +52,7 @@ BEGIN @3
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "install_mod_balance_tweaks"
-  location	= "balance"
+  location	= "balancing"
 END
 
 
