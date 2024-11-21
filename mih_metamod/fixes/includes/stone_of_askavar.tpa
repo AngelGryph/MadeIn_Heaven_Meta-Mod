@@ -21,28 +21,31 @@ BEGIN
     // r8itm16 - Cormyrian Helm
     //
     // Item does not protect against fear as description says.
-    // TODO: Apply confusion and fear immunity batches.
 
     itm.edit[r8itm16]
     [
       m.fx.add{s_opcode = 101;;s_target := "Self";;s_timing := "Equipped" s_parameter2 = 24}
+      m.immunity_effect{confusion fear}
     ]
 
 
     // r8itm31 - The Star of Eloen
     //
     // Free Action effect has wrong timing mode.
-    // TODO: Apply entangle, hold, slow, stun, web, and free_action immunity batches.
 
     itm.edit[r8itm31]
     [
       m.fx.alter{s_timing := "Equipped"}
+      m.immunity_effect{hold stun}
     ]
 
 
     // r8itm32 - The Star of Merris
-    //
-    // TODO: Apply poison, disease and poison_resistance immunity batches.
+
+    itm.edit[r8itm32]
+    [
+      m.immunity_effect{poison diseased}
+    ]
 
 
     // r8itm13 - Sirine's Pearl
