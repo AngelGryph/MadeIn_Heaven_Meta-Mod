@@ -15,6 +15,41 @@ BEGIN
       m_identified_description = m_identified_description.patch{REPLACE_TEXTUALLY EXACT_MATCH "+2" "+1"}
     ]
   END
+
+
+  ACTION_IF FILE_EXISTS_IN_GAME "cdioun1.itm"
+  BEGIN
+    PRINT "The Calling exotic item pack detected, installing katana/ninja-to upgrade..."
+
+    // The Calling's exotic item pack adds some non-magical katanas,
+    // wakizashis and ninja-tos to the Sword Coast, but in an EE game
+    // these are already for sale in the prologue area so they feel
+    // underwhelming when found.  Upgrade them to +1 versions, and
+    // add unenchanted versions to Taerom's just in case player missed
+    // getting them from Winthrop.
+
+    sto.edit[taerum]
+    [
+      DEFINE_ARRAY item_list BEGIN sw1h43 sw1h46 sw1h48 END
+      m.item.add{s_number_in_stock = 1;;s_resref:=$item_list("%entry_index%")|number:i=3}
+    ]
+
+    cre.edit[meilum]
+    [
+      m.cre_swap_items{sw1h43=>sw1h44}
+    ]
+
+    cre.edit[hakt]
+    [
+      m.cre_swap_items{sw1h46=>sw1h47}
+    ]
+
+    COPY_EXISTING "%Lighthouse_BlackAlaricsCave_BCS%.bcs" "override"
+      DECOMPILE_AND_PATCH
+      BEGIN
+        REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH "sw1h48" "sw1h49"
+      END
+  END
 END	// the_calling
 
 
