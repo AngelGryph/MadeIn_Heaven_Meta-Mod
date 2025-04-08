@@ -1,0 +1,15 @@
+DEFINE_ACTION_FUNCTION install_mod_convenience_tweaks
+BEGIN
+  ACTION_BASH_FOR "%MOD_FOLDER%/%component_loc%/includes" "^.*\.tpa"
+  BEGIN
+    ACTION_TO_LOWER BASH_FOR_RES
+
+    LAUNCH_ACTION_FUNCTION run
+      STR_VAR
+      file	= "%BASH_FOR_RES%"
+      location	= "includes"
+    END
+  END
+END	// install_mod_convenience_tweaks
+
+

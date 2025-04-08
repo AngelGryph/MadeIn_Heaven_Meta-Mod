@@ -1,0 +1,33 @@
+DEFINE_ACTION_FUNCTION bst_shops
+BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "bstrmage.sto"
+  BEGIN
+    // Remove robes of the archmagi from
+    // High Hedge and move them to tower mage.
+
+    PRINT "BST tower mage detected, moving robes of the archmagi..."
+
+    COPY_EXISTING "highhedg.sto" "override"
+      REMOVE_STORE_ITEM "clck15" "clck16"
+
+    COPY_EXISTING "bstrmage.sto" "override"
+      ADD_STORE_ITEM "clck15" LAST #0 #0 #0 "identified&unstealable" #1
+      ADD_STORE_ITEM "clck16" LAST #0 #0 #0 "identified&unstealable" #1
+  END
+
+  ACTION_IF FILE_EXISTS_IN_GAME "ysfltchr.sto"
+  BEGIN
+    // Remove The Army Scythe from
+    // Thunderhammer Smithy and move it to tower fletcher.
+
+    PRINT "BST fletcher detected, moving crossbow of speed..."
+
+    COPY_EXISTING "taerum.sto" "override"
+      REMOVE_STORE_ITEM "xbow06"
+
+    COPY_EXISTING "ysfltchr.sto" "override"
+      ADD_STORE_ITEM "xbow06" AFTER "xbow05" #0 #0 #0 "identified&unstealable" #1
+  END
+END	// bst_shops
+
+

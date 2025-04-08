@@ -56,9 +56,20 @@ LAUNCH_ACTION_FUNCTION run
 END
 
 
-// Remove file clutter left by mods
+// Install mod convenience tweaks
 
 BEGIN @4
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "install_mod_convenience_tweaks"
+  location	= "convenience"
+END
+
+
+// Remove file clutter left by mods
+
+BEGIN @99
 NO_LOG_RECORD
 
 LAUNCH_ACTION_FUNCTION run
