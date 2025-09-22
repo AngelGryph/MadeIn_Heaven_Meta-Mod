@@ -1,0 +1,19 @@
+DEFINE_ACTION_FUNCTION illegal_files
+BEGIN
+  // dw#marker_file.itm
+  // Illegal file (name too long) left by Sword Coast Stratagems.
+  // Can apparently cause issues with EEex and some GUI mods.
+  
+  // newmerch2.dlg
+  // Illegal file (name too long) left by BG1 NPC Project.
+
+  ACTION_FOR_EACH file IN "dw#marker_file.itm" "newmerch2.dlg"
+  BEGIN
+    ACTION_IF FILE_EXISTS "override/%file%"
+    BEGIN
+      DELETE "override/%file%"
+    END
+  END
+END	// illegal_files
+
+
