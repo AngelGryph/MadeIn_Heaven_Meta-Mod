@@ -7,7 +7,7 @@ BACKUP "weidu_external/backup/mih_metamod"
 AUTHOR "angel@pearlgates.net"
 VERSION "v1"
 
-//MODDER setup_tra none area_variables warn missing_extern warn missing_resref warn ict2_actions none missing_eval none overwriting_file none fun_args warn
+MODDER setup_tra none area_variables warn missing_extern warn missing_resref warn ict2_actions none missing_eval none overwriting_file none fun_args warn
 
 ASK_EVERY_COMPONENT
 NO_IF_EVAL_BUG
@@ -64,6 +64,17 @@ LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "install_mod_convenience_tweaks"
   location	= "convenience"
+END
+
+
+// Clean up override folder
+
+BEGIN @5
+
+LAUNCH_ACTION_FUNCTION run
+  STR_VAR
+  file		= "cleanup_override"
+  location	= "cleanup"
 END
 
 

@@ -3,6 +3,7 @@
 @2    = ~Resolve known conflicts in installed mods~
 @3    = ~Install mod balancing tweaks~
 @4    = ~Install mod convenience tweaks~
+@5    = ~Clean up override folder~
 @99   = ~Remove file clutter left by mods~
 
 

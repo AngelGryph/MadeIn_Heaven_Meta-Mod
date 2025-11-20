@@ -1,0 +1,27 @@
+DEFINE_ACTION_FUNCTION cleanup_override
+BEGIN
+  // Rename *.pvr to *.pvrz
+
+  ACTION_BASH_FOR "override" "^.*\.pvr$"
+  BEGIN
+    MOVE "%BASH_FOR_FILESPEC%" "%BASH_FOR_FILESPEC%z"
+  END
+  
+
+  // Biff game files in override
+
+  MAKE_BIFF "mh#clean" 
+  BEGIN
+    "override" "^..?.?.?.?.?.?.?\.....?$"
+  END
+
+
+  // Remove remaining files in override
+
+  ACTION_BASH_FOR "override" "^..?.?.?.?.?.?.?\.....?$"
+  BEGIN
+    DELETE "%BASH_FOR_FILESPEC%"
+  END
+END	// cleanup_files
+
+
