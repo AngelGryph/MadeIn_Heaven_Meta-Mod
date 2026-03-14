@@ -18,7 +18,7 @@ BEGIN
 
   // Remove remaining files in override
 
-  ACTION_BASH_FOR "override" "^..?.?.?.?.?.?.?\.....?$"
+  ACTION_BASH_FOR "override" "^.*$"
   BEGIN
     DELETE "%BASH_FOR_FILESPEC%"
   END
