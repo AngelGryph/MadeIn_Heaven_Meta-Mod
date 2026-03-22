@@ -13,6 +13,7 @@ BEGIN
 
     sto.edit[taerum]
     [
+      CLEAR_ARRAY item_list
       DEFINE_ARRAY item_list BEGIN sw1h43 sw1h46 sw1h48 END
       m.item.add{s_number_in_stock = 1;;s_resref:=$item_list("%entry_index%")|number:i=3}
     ]
