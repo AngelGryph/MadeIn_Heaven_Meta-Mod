@@ -7,7 +7,7 @@ BACKUP "weidu_external/backup/mih_metamod"
 AUTHOR "angel@pearlgates.net"
 VERSION "v1"
 
-MODDER setup_tra none area_variables warn missing_extern warn missing_resref warn ict2_actions none missing_eval none overwriting_file none fun_args warn
+//MODDER setup_tra none area_variables warn missing_extern warn missing_resref warn ict2_actions none missing_eval none overwriting_file none fun_args warn
 
 ASK_EVERY_COMPONENT
 NO_IF_EVAL_BUG
@@ -27,6 +27,10 @@ LANGUAGE "English"
 
 BEGIN @1
 
+LABEL MH#MiH_Meta-Mod-Patch_Installed_Mods
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
+
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "install_bug_fixes"
@@ -37,6 +41,10 @@ END
 // Resolve known mod conflicts
 
 BEGIN @2
+
+LABEL MH#-MiH_Meta-Mod-Resolve_Mod_Conflicts
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
@@ -49,6 +57,10 @@ END
 
 BEGIN @3
 
+LABEL MH#-MiH_Meta-Mod-Mod_Balancing_Tweaks
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
+
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "install_mod_balance_tweaks"
@@ -59,6 +71,10 @@ END
 // Install mod convenience tweaks
 
 BEGIN @4
+
+LABEL MH#-MiH_Meta-Mod-Mod_Convenience_Tweaks
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
@@ -71,6 +87,10 @@ END
 
 BEGIN @5
 
+LABEL MH#-MiH_Meta-Mod-Cleanup_Override
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
+
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
   file		= "cleanup_override"
@@ -82,6 +102,10 @@ END
 
 BEGIN @99
 NO_LOG_RECORD
+
+LABEL MH#-MiH_Meta-Mod-Remove_File_Clutter
+
+REQUIRE_PREDICATE GAME_IS "bg2 bgt bgee bg2ee eet" @98
 
 LAUNCH_ACTION_FUNCTION run
   STR_VAR
